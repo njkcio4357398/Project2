@@ -2,7 +2,7 @@ import csv
 from typing import List
 from pet import Pet
 
-def validate_pet_data(name: str, species: str, vaccination_date: str)-> bool:
+def validate_pet_data(name: str, species: str, vaccination_date: str) -> bool:
     """
     Validate input fields for a pet.
 
@@ -17,7 +17,7 @@ def validate_pet_data(name: str, species: str, vaccination_date: str)-> bool:
     return all([name.strip(), species.strip(), vaccination_date.strip()])
 
 
-def save_pets_to_csv(pets: List[Pet], filename: str="data/pets.csv")->None:
+def save_pets_to_csv(pets: List[Pet], filename: str = "data/pets.csv") -> None:
     """
     Save a list of Pet objects to a CSV file.
 
@@ -32,9 +32,10 @@ def save_pets_to_csv(pets: List[Pet], filename: str="data/pets.csv")->None:
             for pet in pets:
                 writer.writerow([pet.name, pet.species, pet.vaccination_date])
     except IOError as e:
-        print(f"[Error] Failed to write to {filename}: {e}")
+        print(f"[ERROR] Failed to write to {filename}: {e}")
 
-def load_pets_from_csv(filename: str= "data/pets.csv")->List[Pet]:
+
+def load_pets_from_csv(filename: str = "data/pets.csv") -> List[Pet]:
     """
     Load Pet objects from a CSV file.
 
@@ -44,7 +45,7 @@ def load_pets_from_csv(filename: str= "data/pets.csv")->List[Pet]:
     Returns:
         List[Pet]: List of loaded Pet objects.
     """
-    pets: List[Pets] = []
+    pets: List[Pet] = []
     try:
         with open(filename, "r", newline="") as file:
             reader = csv.DictReader(file)

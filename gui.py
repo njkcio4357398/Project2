@@ -5,51 +5,46 @@ from tkinter import messagebox
 from typing import List
 from pet import Pet
 from storage import validate_pet_data, save_pets_to_csv, load_pets_from_csv
-
+#ChatGPT class PetAPP:
 class PetApp:
     """Tkinter GUI Application for tracking pet vaccinations."""
-
+#Chat GPT def __init__(self):
     def __init__(self):
         self.window = tk.Tk()
         self.window.title("Pet Vaccination Tracker")
 
-        # Name input
+        
         tk.Label(self.window, text="Pet Name").pack()
         self.name_entry = tk.Entry(self.window)
         self.name_entry.pack()
 
-        # Species input
+        
         tk.Label(self.window, text="Species").pack()
         self.species_entry = tk.Entry(self.window)
         self.species_entry.pack()
 
-        # Vaccination date input
         tk.Label(self.window, text="Vaccination Date (YYYY-MM-DD)").pack()
         self.date_entry = tk.Entry(self.window)
         self.date_entry.pack()
 
-        # Add button
         self.add_button = tk.Button(self.window, text="Add Pet", command=self.add_pet)
         self.add_button.pack()
 
-        # Pet list display
         self.pet_listbox = tk.Listbox(self.window, width=50)
         self.pet_listbox.pack()
 
-        # Load pets from CSV
         self.pets: List[Pet] = load_pets_from_csv()
         for pet in self.pets:
             self.pet_listbox.insert(tk.END, str(pet))
 
-        # Save on window close
         self.window.protocol("WM_DELETE_WINDOW", self.on_close)
-
+#Chat GPT def add_pet(self)->None:
     def add_pet(self) -> None:
         """Add a pet if inputs are valid."""
         name = self.name_entry.get()
         species = self.species_entry.get()
         date = self.date_entry.get()
-
+#ChatGPT if validate_pet_data(name, species, date):
         if validate_pet_data(name, species, date):
             new_pet = Pet(name, species, date)
             self.pets.append(new_pet)
